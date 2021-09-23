@@ -1,0 +1,554 @@
+@import "./var";
+// 大家好！我是全局theme
+@import "./theme.scss";
+@import "./common.css";
+@import "./assets/iconfont/iconfont.css";
+// wizard样式修改，@import 需放于变量之下。
+//$aw-colors-done.background-color-default: #007E98;
+$aw-colors: ('_': ('default': ('border-color-default': #fff,
+  'background-color-default': #fff,
+  'symbol-color-default': #fff,
+  'border-color-hover': darken(#fff, 10%),
+  'background-color-hover': darken(#fff, 5%),
+  'symbol-color-hover': darken(#fff, 10%),
+),
+  'current': ('border-color-default': #fff,
+    'background-color-default': #fff,
+    'symbol-color-default': #fff,
+    'border-color-hover': darken(#fff, 10%),
+    'background-color-hover': darken(#fff, 5%),
+    'symbol-color-hover': darken(#fff, 10%)
+  ),
+  'done': ('border-color-default': #4D84FD,
+    'background-color-default': #4D84FD,
+    'symbol-color-default': #4D84FD,
+    'border-color-hover': darken(#4D84FD, 10%),
+    'background-color-hover': darken(#4D84FD, 5%),
+    'symbol-color-hover': darken(#4D84FD, 10%),
+  ),
+  'optional': ('border-color-default': #38ef38,
+    'background-color-default': #38ef38,
+    'symbol-color-default': #38ef38,
+    'border-color-hover': darken(#38ef38, 10%),
+    'background-color-hover': darken(#38ef38, 5%),
+    'symbol-color-hover': darken(#38ef38, 10%),
+  ),
+  'editing': ('border-color-default': #fff,
+    'background-color-default': #fff,
+    'symbol-color-default': #fff,
+    'border-color-hover': darken(#fff, 10%),
+    'background-color-hover': darken(#fff, 5%),
+    'symbol-color-hover': darken(#fff, 10%),
+  ),
+),
+  'large-filled-symbols': ('_': ('symbol-color-default': black,
+    'symbol-color-hover': black,
+  ))) !default;
+$aw-big-circle-width: 18px !default;
+$aw-big-circle-height: 18px !default;
+@import '../node_modules/angular-archwizard/archwizard.scss';
+
+/////////////////////////////////
+// Overrides of default styles //
+/////////////////////////////////
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.fastone a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  &:not(:last-child) {
+    margin-right: $baseline-grid;
+  }
+}
+
+// 透明滚动会导致右侧出现留白
+// * {
+//   &::-webkit-scrollbar {
+//     background: transparent;
+//     height: $baseline-grid;
+//     width: $baseline-grid;
+//   }
+// }
+
+body .ui-button:enabled:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+body .ui-tabview.ui-tabview-top .ui-tabview-nav li:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.ui-sidebar-left.ui-sidebar-active,
+.ui-sidebar-right.ui-sidebar-active {
+  overflow: auto !important;
+}
+
+body .ui-fileupload .ui-fileupload-content {
+  max-height: 300px;
+  overflow: auto;
+}
+
+body .ui-spinner .ui-spinner-button.ui-spinner-up {
+  margin-right: 0 !important;
+}
+
+body .ui-listbox {
+  min-width: 400px;
+}
+
+body .ui-listbox {
+  border: none !important;
+}
+
+.ui-widget,
+.ui-widget * {
+  outline: none;
+}
+
+[#{$fastone}-required]:before{
+  content: '*';
+  color: $failed;
+}
+.yes {
+  color: #5DB51D;
+}
+
+.no {
+  color: $failed;
+}
+
+// 循环
+@for $i from 0 through 50 {
+  .margin {
+    &-p-#{$i} {
+      &-all {
+        margin: (1px * $i);
+      }
+
+      &-left {
+        margin-left: (1px * $i);
+      }
+
+      &-right {
+        margin-right: (1px * $i);
+      }
+
+      &-top {
+        margin-top: (1px * $i);
+      }
+
+      &-bottom {
+        margin-bottom: (1px * $i);
+      }
+    }
+
+    &-em-#{$i} {
+      &-all {
+        margin: (1em * $i);
+      }
+
+      &-left {
+        margin-left: (1em * $i);
+      }
+
+      &-right {
+        margin-right: (1em * $i);
+      }
+
+      &-top {
+        margin-top: (1em * $i);
+      }
+
+      &-bottom {
+        margin-bottom: (1em * $i);
+      }
+    }
+  }
+
+  .padding {
+    &-p-#{$i} {
+      &-all {
+        padding: (1px * $i);
+      }
+
+      &-left {
+        padding-left: (1px * $i);
+      }
+
+      &-right {
+        padding-right: (1px * $i);
+      }
+
+      &-top {
+        padding-top: (1px * $i);
+      }
+
+      &-bottom {
+        padding-bottom: (1px * $i);
+      }
+    }
+
+    &-em-#{$i} {
+      &-all {
+        padding: (1em * $i);
+      }
+
+      &-left {
+        padding-left: (1em * $i);
+      }
+
+
+      &-right {
+        padding-right: (1em * $i);
+      }
+
+      &-top {
+        padding-top: (1em * $i);
+      }
+
+      &-bottom {
+        padding-bottom: (1em * $i);
+      }
+    }
+  }
+
+  .w-em-#{$i} {
+    width: (1em * $i) !important;
+  }
+  .max-w-em-#{$i} {
+    max-width: (1em * $i) !important;
+  }
+  .w-p-#{$i} {
+    width: (1px * $i) !important;
+  }
+  .h-em-#{$i} {
+    height: (1em * $i) !important;
+  }
+  .h-p-#{$i} {
+    height: (1px * $i) !important;
+  }
+}
+
+.text {
+  &-left {
+    text-align: left !important;
+  }
+
+  &-right {
+    text-align: right !important;
+  }
+
+  &-center {
+    text-align: center !important;
+  }
+}
+
+.pull {
+  &-left {
+    float: left;
+  }
+
+  &-right {
+    float: right;
+
+  }
+}
+
+.display {
+  &-flex {
+    display: flex !important;
+    display: -webkit-flex !important;
+  }
+
+  &-block {
+    display: block !important;
+  }
+
+  &-inline {
+    display: inline !important;
+  }
+
+  &-inline-block {
+    display: inline-block !important;
+  }
+
+  &-none {
+    display: none !important;
+  }
+
+  &-contents {
+    display: contents !important;
+  }
+}
+
+.cursor {
+  &-pointer {
+    cursor: pointer !important;
+  }
+}
+
+.flex {
+  &-center {
+    justify-content: center !important;
+  }
+
+  &-left {
+    justify-content: start !important;
+  }
+
+  &-right {
+    justify-content: end !important;
+  }
+
+  &-align {
+    &-center {
+      align-items: center !important;
+    }
+  }
+
+}
+
+
+.line-height {
+  &-initial {
+    line-height: initial;
+  }
+
+  &-normal {
+    line-height: normal;
+  }
+
+}
+
+.float {
+  &-left {
+    float: left;
+
+  }
+
+  &-right {
+    float: right;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .container {
+    padding-left: 50px;
+
+    > .side-nav {
+      width: 50px;
+    }
+
+    b {
+      visibility: hidden;
+    }
+  }
+}
+
+.flex {
+  &-surplus {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+
+  &-wrap {
+    &-w {
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.disabled-all {
+  pointer-events: none;
+  font-smoothing: antialiased;
+  opacity: 0.8;
+}
+
+.disabled-ignore {
+  pointer-events: auto;
+  background-color: transparent;
+  opacity: 1;
+}
+
+.disabled-switch {
+  pointer-events: none;
+  background-color: transparent;
+  opacity: 0.5;
+}
+
+.fastone_loading {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+
+  .loading_box {
+    width: 100%;
+    text-align: center;
+    padding-top: 10%;
+  }
+}
+
+@-webkit-keyframes rotation-keyframes {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes rotation-keyframes {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-ms-keyframes rotation {
+  from {
+    -o-transform: rotate(0deg);
+  }
+
+  to {
+    -o-transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes rotation-keyframes {
+  from {
+    -o-transform: rotate(0deg);
+  }
+
+  to {
+    -o-transform: rotate(360deg);
+  }
+}
+
+@keyframes rotation-keyframes {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.rotation {
+  -webkit-transform: rotate(360deg);
+  animation: rotation-keyframes 3s linear infinite;
+  -moz-animation: rotation-keyframes 3s linear infinite;
+  -webkit-animation: rotation-keyframes 3s linear infinite;
+  -o-animation: rotation-keyframes 3s linear infinite;
+  color: #364150;
+}
+
+.#{$fastone}-ui {
+  .ui-dialog,
+  &.ui-dynamicdialog {
+    .ui {
+      &-dialog {
+        &-titlebar {
+          border: 0;
+          background-color: #F9F9F9;
+
+          &:before {
+            width: 4px;
+            height: 19px;
+            position: absolute;
+            left: 0;
+            background-color: $theme-color;
+          }
+        }
+
+        &-content {
+          border: 0;
+        }
+
+        &-footer {
+          border: 0;
+        }
+      }
+    }
+  }
+
+  &.#{$fastone}-state,
+  .#{$fastone}-state {
+    display: inline-block;
+    text-align: center;
+    min-width: 95px;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 12px;
+    padding: 0 10px;
+    color: white;
+
+    &.COMPLETE {
+      background-color: $success;
+    }
+
+    &.RUNNING {
+      background-color: $running;
+    }
+
+    &.QUEUED {
+      background-color: $queued;
+    }
+
+    &.FAILED {
+      background-color: $failed;
+    }
+
+    &.ERROR {
+      background-color: $failed;
+    }
+
+    &.SCHEDULED {
+      background-color: $scheduled;
+    }
+
+    &.STARTING {
+      background-color: $run;
+    }
+
+    &.OBSOLETED {
+      background-color: $obsoleted;
+    }
+
+    &.TERMINATED {
+      background-color: $terminated;
+    }
+
+    &.CANCELLED {
+      background-color: $cancelled;
+    }
+
+    &.COMMITTED {
+      background-color: $finalized;
+    }
+
+    &.UPDATING {
+      background-color: $updating;
+    }
+
+    &.COMPLETED {
+      background-color: $final;
+    }
+  }
+}
